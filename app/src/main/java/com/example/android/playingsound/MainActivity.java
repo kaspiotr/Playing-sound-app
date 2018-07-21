@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mediaPlayer.start();
+                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        Toast.makeText(MainActivity.this, "I'm done!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -43,13 +49,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.reset();
                 mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.song);
-            }
-        });
-
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(MainActivity.this, "I'm done!", Toast.LENGTH_SHORT).show();
             }
         });
     }
